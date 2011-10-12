@@ -87,6 +87,10 @@ class RestCurlClient {
 
   function http_parse_message($res) {
 
+    if(! $res){
+      throw new HttpServerException(curl_error($this->handle), -1);
+    }
+
     $this->response_object = $res;
     $this->response_info = curl_getinfo($this->handle);
     $code = $this->response_info['http_code'];
