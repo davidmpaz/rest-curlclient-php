@@ -22,6 +22,7 @@ class RestCurlClient {
   function __construct() {
     $this->http_options = array();
     $this->http_options[CURLOPT_RETURNTRANSFER] = true;
+    $this->http_options[CURLOPT_FOLLOWLOCATION] = false;
   }
 
   function get($url, $http_options = array()) {
