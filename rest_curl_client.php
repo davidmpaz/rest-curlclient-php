@@ -33,7 +33,9 @@ class RestCurlClient {
       throw new RestClientException("Error setting cURL request options");
     }
 
-    $this->http_parse_message(curl_exec($this->handle));
+    $this->response_object = curl_exec($this->handle);
+    $this->http_parse_message($this->response_object);
+
     curl_close($this->handle);
     return $this->response_object;
   }
@@ -52,7 +54,9 @@ class RestCurlClient {
       throw new RestClientException("Error setting cURL request options.");
     }
 
-    $this->http_parse_message(curl_exec($this->handle));
+    $this->response_object = curl_exec($this->handle);
+    $this->http_parse_message($this->response_object);
+
     curl_close($this->handle);
     return $this->response_object;
   }
@@ -67,7 +71,9 @@ class RestCurlClient {
       throw new RestClientException("Error setting cURL request options.");
     }
 
-    $this->http_parse_message(curl_exec($this->handle));
+    $this->response_object = curl_exec($this->handle);
+    $this->http_parse_message($this->response_object);
+
     curl_close($this->handle);
     return $this->response_object;
   }
@@ -81,7 +87,9 @@ class RestCurlClient {
       throw new RestClientException("Error setting cURL request options.");
     }
 
-    $this->http_parse_message(curl_exec($this->handle));
+    $this->response_object = curl_exec($this->handle);
+    $this->http_parse_message($this->response_object);
+
     curl_close($this->handle);
     return $this->response_object;
   }
@@ -92,7 +100,6 @@ class RestCurlClient {
       throw new HttpServerException(curl_error($this->handle), -1);
     }
 
-    $this->response_object = $res;
     $this->response_info = curl_getinfo($this->handle);
     $code = $this->response_info['http_code'];
 
