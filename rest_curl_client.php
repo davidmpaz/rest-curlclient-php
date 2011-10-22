@@ -64,7 +64,7 @@ class RestCurlClient {
   function put($url, $data = '', $http_options = array()) {
     $http_options = $http_options + $this->http_options;
     $http_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
-    $http_options[CURLOPT_POSTFIELDS] = $fields;
+    $http_options[CURLOPT_POSTFIELDS] = $data;
     $this->handle = curl_init($url);
 
     if(! curl_setopt_array($this->handle, $http_options)){
