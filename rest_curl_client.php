@@ -25,6 +25,17 @@ class RestCurlClient {
     $this->http_options[CURLOPT_FOLLOWLOCATION] = false;
   }
 
+  /**
+   * Perform a GET call to server
+   * 
+   * Additionaly in $response_object and $response_info are the 
+   * response from server and the response info as it is returned 
+   * by curl_exec() and curl_getinfo() respectively.
+   * 
+   * @param string $url The url to make the call to.
+   * @param array $http_options Extra option to pass to curl handle.
+   * @return string The response from curl if any
+   */
   function get($url, $http_options = array()) {
     $http_options = $http_options + $this->http_options;
     $this->handle = curl_init($url);
@@ -40,6 +51,18 @@ class RestCurlClient {
     return $this->response_object;
   }
 
+  /**
+   * Perform a POST call to the server
+   * 
+   * Additionaly in $response_object and $response_info are the 
+   * response from server and the response info as it is returned 
+   * by curl_exec() and curl_getinfo() respectively.
+   * 
+   * @param string $url The url to make the call to.
+   * @param string|array The data to post. Pass an array to make a http form post.
+   * @param array $http_options Extra option to pass to curl handle.
+   * @return string The response from curl if any
+   */
   function post($url, $fields = array(), $http_options = array()) {
     $http_options = $http_options + $this->http_options;
     $http_options[CURLOPT_POST] = true;
@@ -61,6 +84,18 @@ class RestCurlClient {
     return $this->response_object;
   }
 
+  /**
+   * Perform a PUT call to the server
+   * 
+   * Additionaly in $response_object and $response_info are the 
+   * response from server and the response info as it is returned 
+   * by curl_exec() and curl_getinfo() respectively.
+   * 
+   * @param string $url The url to make the call to.
+   * @param string|array The data to post.
+   * @param array $http_options Extra option to pass to curl handle.
+   * @return string The response from curl if any
+   */
   function put($url, $data = '', $http_options = array()) {
     $http_options = $http_options + $this->http_options;
     $http_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
@@ -78,6 +113,17 @@ class RestCurlClient {
     return $this->response_object;
   }
 
+  /**
+   * Perform a DELETE call to server
+   * 
+   * Additionaly in $response_object and $response_info are the 
+   * response from server and the response info as it is returned 
+   * by curl_exec() and curl_getinfo() respectively.
+   * 
+   * @param string $url The url to make the call to.
+   * @param array $http_options Extra option to pass to curl handle.
+   * @return string The response from curl if any
+   */
   function delete($url, $http_options = array()) {
     $http_options = $http_options + $this->http_options;
     $http_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
