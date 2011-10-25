@@ -154,11 +154,13 @@ class RestCurlClient {
     }
 
     if($code >= 400 && $code <=600) {
-      throw new HttpServerException(curl_error($this->handle), $code);
+      throw new HttpServerException('Server response status was: ' . $code .
+        ' with response: [' . $res . ']', $code);
     }
 
     if(!in_array($code, range(200,207))) {
-      throw new HttpServerException(curl_error($this->handle), $code);
+      throw new HttpServerException('Server response status was: ' . $code .
+        ' with response: [' . $res . ']', $code);
     }
   }
 }
