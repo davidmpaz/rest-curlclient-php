@@ -18,7 +18,7 @@ Examples
 --------
 
     require 'rest_client.php';
-    $c = new RestClientCurl();
+    $c = new RestCurlClient();
 
 *GET request*
 
